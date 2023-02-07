@@ -2,29 +2,25 @@ import {counter} from "../api/CounterApi"
 import {create} from "zustand"
 
 interface CounterState {
+  // state
   isLoading: boolean
   count: number
   error: string
+
+  // actions
   getCount: () => void
   incrementCount: () => void
   decrementCount: () => void
-
 }
-
-interface LocalCounterState {
-  count: number,
-  increment: () => void
-}
-export const useLocalCounterStore = create<LocalCounterState> ((set) => ({
-  count: 0,
-  increment: () => set(state => ({count: state.count + 1}))
-}))
 
 export const useCounterStore = create<CounterState>((set) => ({
+  // initial value
   isLoading: false,
   count: 0,
   error: "",
 
+
+  // actions
 
   getCount: () => {
     set(_ => ({isLoading: true}))
